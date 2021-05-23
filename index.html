@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conociendo Animales</title>
-    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
 </head>
 
@@ -34,35 +35,36 @@
         <a-image src="#I4" position="3.7 1.5 -3" width="2.5" height="1.5" onclick="show('Pinguino')"></a-image>
 
 
-        <!-- sphere videos -->
-        <a-videosphere id="fondo" src="#Delfin" rotation="0 90 0"></a-videosphere>
-        <a-videosphere id="Leon" src="#Leon" rotation="0 90 0"></a-videosphere>
-        <a-videosphere id="Elefante" src="#Elefante" rotation="0 90 0"></a-videosphere>
-        <a-videosphere id="Pinguino" src="#Pinguino" rotation="0 90 0"></a-videosphere>
+
+        <a-text align="center" text="font: exo2bold" font-weight=800 scale="3 3 3" color=#616161
+            value="CONOCE LOS ANIMALES" position="0 2.8 -3" ></a-text>
+
+        <a-text align="center" text="font: exo2bold" font-weight=800 scale="3 3 3.4" color=#FFFF
+            value="CONOCE LOS ANIMALES" position="-0.05 2.8 -3" opacity=1></a-text>
+
+
+
 
 
         <!-- Camara -->
         <a-camera>
-            <a-cursor id="cursor"
-                animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-                animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-                event-set__mouseenter="_event: mouseenter; color: springgreen"
-                event-set__mouseleave="_event: mouseleave; color: black" raycaster="objects: .link"></a-cursor>
+            <a-cursor id="cursor"></a-cursor>
         </a-camera>
+
+        <a-sky src="#Delfin" id="principal">
+
+
+            <script>
+                function show(id) {
+                    var valor = $('#' + id).attr("alt");
+                    document.getElementById('principal').setAttribute('src', '#' + id);
+                    $('#description').attr("value", "Usted se encuentra en" + valor);
+                }
+            </script>
+
     </a-scene>
 
-    <a-sky id="fondo" radius="10" src="#Delfin"
-        animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
-        animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade">
-    </a-sky>
 
-    <script>
-        function show(id) {
-            var valor = $("#" + id).attr("alt");
-            document.getElementById("fondo").setAttribute("src", "#" + id);
-            $("#description").attr("value", "Usted se encuentra en" + valor);
-        }
-    </script>
 </body>
 
 </html>
