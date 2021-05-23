@@ -1,38 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conociendo Animales</title>
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+
 </head>
+
 <body>
     <a-scene>
         <a-assets>
+            <!-- Imagenes -->
             <img id="I1" alt="Leon" src="./assets/Ileon.jpeg" />
             <img id="I2" alt="Elefante" src="./assets/Ielefante.jpg" />
             <img id="I3" alt="Delfin" src="./assets/Idelfin.jpg" />
             <img id="I4" alt="Pinguino" src="./assets/Ipinguino.jpg" />
-            <video id="delfin" src="./assets/Orangutan.mp4" autoplay></video>
+
+            <!-- Video -->
+            <video id="Leon" src="./assets/Leon.mp4" autoplay></video>
+            <video id="Elefante" src="./assets/Elefante.mp4" autoplay></video>
+            <video id="Delfin" src="./assets/Delfin.mp4" autoplay></video>
+            <video id="Pinguino" src="./assets/pinguinos.mp4" autoplay></video>
+
         </a-assets>
-        <a-image src="#I1" position="-4.1 1.5 -3" width="2.5" height="1.5"></a-image>
-        <a-image src="#I2" position="-1.5 1.5 -3" width="2.5" height="1.5"></a-image>
-        <a-image src="#I3" position="1.1 1.5 -3" width="2.5" height="1.5"></a-image>
-        <a-image src="#I4" position="3.7 1.5 -3" width="2.5" height="1.5"></a-image>
-        
+
+        <!-- Propiedades -->
+        <a-image src="#I1" position="-4.1 1.5 -3" width="2.5" height="1.5" onclick="show('Leon')"></a-image>
+        <a-image src="#I2" position="-1.5 1.5 -3" width="2.5" height="1.5" onclick="show('Elefante')"></a-image>
+        <a-image src="#I3" position="1.1 1.5 -3" width="2.5" height="1.5" onclick="show('Delfin')"></a-image>
+        <a-image src="#I4" position="3.7 1.5 -3" width="2.5" height="1.5" onclick="show('Pinguino')"></a-image>
+
+
+        <!-- sphere videos -->
+        <a-videosphere id="fondo" src="#Delfin" rotation="0 90 0"></a-videosphere>
+        <a-videosphere id="Leon" src="#Leon" rotation="0 90 0"></a-videosphere>
+        <a-videosphere id="Elefante" src="#Elefante" rotation="0 90 0"></a-videosphere>
+        <a-videosphere id="Pinguino" src="#Pinguino" rotation="0 90 0"></a-videosphere>
+
+
+        <!-- Camara -->
         <a-camera>
-            <a-cursor color=#fff></a-cursor>
+            <a-cursor id="cursor"
+                animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+                animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+                event-set__mouseenter="_event: mouseenter; color: springgreen"
+                event-set__mouseleave="_event: mouseleave; color: black" raycaster="objects: .link"></a-cursor>
         </a-camera>
- 
-        <a-videosphere id="fondo" src="#delfin" rotation="0 90 0"></a-videosphere>
     </a-scene>
+
+    <a-sky id="fondo" radius="10" src="#Delfin"
+        animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
+        animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade">
+    </a-sky>
+
     <script>
         function show(id) {
-          var valor = $("#" + id).attr("alt");
-          document.getElementById("fondo").setAttribute("src", "#" + id);
-          $("#description").attr("value", "Usted se encuentra en" + valor);
+            var valor = $("#" + id).attr("alt");
+            document.getElementById("fondo").setAttribute("src", "#" + id);
+            $("#description").attr("value", "Usted se encuentra en" + valor);
         }
     </script>
 </body>
+
 </html>
