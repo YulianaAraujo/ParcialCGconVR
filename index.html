@@ -10,14 +10,29 @@
 <body>
     <a-scene>
         <a-assets>
-            <video id="delfin" src="./assets/Delfin.mp4" autoplay></video>
+            <img id="I1" alt="Leon" src="./assets/Ileon.jpeg" />
+            <img id="I2" alt="Elefante" src="./assets/Ielefante.jpg" />
+            <img id="I3" alt="Delfin" src="./assets/Idelfin.jpg" />
+            <img id="I4" alt="Pinguino" src="./assets/Ipinguino.jpg" />
+            <video id="delfin" src="./assets/Orangutan.mp4" autoplay></video>
         </a-assets>
-
+        <a-image src="#I1" position="-4.1 1.5 -3" width="2.5" height="1.5"></a-image>
+        <a-image src="#I2" position="-1.5 1.5 -3" width="2.5" height="1.5"></a-image>
+        <a-image src="#I3" position="1.1 1.5 -3" width="2.5" height="1.5"></a-image>
+        <a-image src="#I4" position="3.7 1.5 -3" width="2.5" height="1.5"></a-image>
+        
         <a-camera>
-            <a-cursor color=#02C700></a-cursor>
+            <a-cursor color=#fff></a-cursor>
         </a-camera>
-
-        <a-videosphere src="#delfin" rotation="0 90 0"></a-videosphere>
+ 
+        <a-videosphere id="fondo" src="#delfin" rotation="0 90 0"></a-videosphere>
     </a-scene>
+    <script>
+        function show(id) {
+          var valor = $("#" + id).attr("alt");
+          document.getElementById("fondo").setAttribute("src", "#" + id);
+          $("#description").attr("value", "Usted se encuentra en" + valor);
+        }
+    </script>
 </body>
 </html>
