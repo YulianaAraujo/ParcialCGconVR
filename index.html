@@ -1,70 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conociendo Animales</title>
     <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <a-scene>
-        <a-assets>
-            <!-- Imagenes -->
-            <img id="I1" alt="Leon" src="./assets/Ileon.jpeg" />
-            <img id="I2" alt="Elefante" src="./assets/Ielefante.jpg" />
-            <img id="I3" alt="Delfin" src="./assets/Idelfin.jpg" />
-            <img id="I4" alt="Pinguino" src="./assets/Ipinguino.jpg" />
+      <a-assets>
+        <!-- Imagenes -->
+        <img id="I1" alt="Leon" src="./assets/Ileon.jpeg" />
+        <img id="I2" alt="Elefante" src="./assets/Ielefante.jpg" />
+        <img id="I3" alt="Delfin" src="./assets/Idelfin.jpg" />
+        <img id="I4" alt="Pinguino" src="./assets/Ipinguino.jpg" />
 
-            <!-- Video -->
-            <video id="Leon" src="./assets/Leon.mp4" autoplay></video>
-            <video id="Elefante" src="./assets/Elefante.mp4" autoplay></video>
-            <video id="Delfin" src="./assets/Delfin.mp4" autoplay></video>
-            <video id="Pinguino" autoplay loop="true" src="https://www.youtube.com/embed/uXY8eHt2HB0"></video>
+        <!-- Video -->
+        <video id="Leon" autoplay loop="true" src="./assets/Leon.mp4"></video>
+        <video id="Elefante" autoplay loop="true" src="./assets/Elefante.mp4"></video>
+        <video id="Delfin" autoplay loop="true" src="./assets/Delfin.mp4"></video>
+        <video id="Pinguino" autoplay loop="true" src="./assets/pinguinos.mp4"></video>
+      </a-assets>
 
-        </a-assets>
+      <!-- Propiedades -->
+      <a-image
+        id="img1"
+        src="#I1"
+        position="-4.1 1.5 -3"
+        width="2.5"
+        height="1.5"
+        onclick="show('Leon')"
+        onmouseenter="move(id)"
+      ></a-image>
+      <a-image
+        id="img2"
+        src="#I2"
+        position="-1.5 1.5 -3"
+        width="2.5"
+        height="1.5"
+        onclick="show('Elefante')"
+        onmouseenter="move(id)"
+      ></a-image>
+      <a-image
+        id="img3"
+        src="#I3"
+        position="1.1 1.5 -3"
+        width="2.5"
+        height="1.5"
+        onclick="show('Delfin')"
+        onmouseenter="move(id)"
+      ></a-image>
+      <a-image
+        id="img4"
+        src="#I4"
+        position="3.7 1.5 -3"
+        width="2.5"
+        height="1.5"
+        onclick="show('Pinguino')"
+        onmouseenter="move(id)"
+      ></a-image>
 
-        <!-- Propiedades -->
-        <a-image src="#I1" position="-4.1 1.5 -3" width="2.5" height="1.5" onclick="show('Leon')"></a-image>
-        <a-image src="#I2" position="-1.5 1.5 -3" width="2.5" height="1.5" onclick="show('Elefante')"></a-image>
-        <a-image src="#I3" position="1.1 1.5 -3" width="2.5" height="1.5" onclick="show('Delfin')"></a-image>
-        <a-image src="#I4" position="3.7 1.5 -3" width="2.5" height="1.5" onclick="show('Pinguino')"></a-image>
+      <!-- Title -->
+      <a-text
+        align="center"
+        text="font: exo2bold"
+        font-weight="800"
+        scale="3 3 3"
+        color="#616161"
+        value="CONOCE LOS ANIMALES"
+        position="0 2.8 -3"
+      ></a-text>
 
+      <a-text
+        align="center"
+        text="font: exo2bold"
+        font-weight="800"
+        scale="3 3 3.4"
+        color="#FFFF"
+        value="CONOCE LOS ANIMALES"
+        position="-0.05 2.8 -3"
+        opacity="1"
+      ></a-text>
 
+      <!-- Camara -->
+      <a-camera>
+        <a-cursor id="cursor"></a-cursor>
+      </a-camera>
 
-        <a-text align="center" text="font: exo2bold" font-weight=800 scale="3 3 3" color=#616161
-            value="CONOCE LOS ANIMALES" position="0 2.8 -3" ></a-text>
+      <a-sky src="#Delfin" id="principal"></a-sky>
 
-        <a-text align="center" text="font: exo2bold" font-weight=800 scale="3 3 3.4" color=#FFFF
-            value="CONOCE LOS ANIMALES" position="-0.05 2.8 -3" opacity=1></a-text>
+      <script>
+        function show(id) {
+          var valor = $("#" + id).attr("alt");
+          document.getElementById("principal").setAttribute("src", "#" + id);
+          $("#description").attr("value", "Usted se encuentra en" + valor);
+        
+        }
 
-
-
-
-
-        <!-- Camara -->
-        <a-camera>
-            <a-cursor id="cursor"></a-cursor>
-        </a-camera>
-
-        <a-sky src="#Delfin" id="principal">
-
-
-            <script>
-                function show(id) {
-                    var valor = $('#' + id).attr("alt");
-                    document.getElementById('principal').setAttribute('src', '#' + id);
-                    $('#description').attr("value", "Usted se encuentra en" + valor);
-                }
-            </script>
-
+        function move(id){
+            var img = document.getElementById(id);
+            img.setAttribute("scale", { x: 1.1, y: 1.1, z: 1.1 });
+            img.addEventListener('mouseleave', function () {
+            img.setAttribute('scale', {x: 1, y: 1, z: 1});
+            });
+        }
+      </script>
     </a-scene>
-
-
-</body>
-
+  </body>
 </html>
