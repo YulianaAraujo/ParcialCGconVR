@@ -23,22 +23,26 @@
         <video id="Elefante" autoplay loop="true" src="./assets/Elefante.mp4"></video>
         <video id="Delfin" autoplay loop="true" src="./assets/Delfin.mp4"></video>
         <video id="Pinguino" autoplay loop="true" src="./assets/pinguinos.mp4"></video>
+      
+        <!-- Audio -->
+        <audio id="Ielefante" src="./assets/infoelefante.mp3" preload="auto"></audio>
       </a-assets>
 
       <!-- Propiedades -->
       <a-image
         id="img1"
         src="#I1"
-        position="-4.1 1.5 -3"
+        position="-4.3 1.5 -3"
         width="2.5"
         height="1.5"
         onclick="show('Leon')"
         onmouseenter="move(id)"
+        sound="src:#Ielefante; on:click"
       ></a-image>
       <a-image
         id="img2"
         src="#I2"
-        position="-1.5 1.5 -3"
+        position="-1.6 1.5 -3"
         width="2.5"
         height="1.5"
         onclick="show('Elefante')"
@@ -56,7 +60,7 @@
       <a-image
         id="img4"
         src="#I4"
-        position="3.7 1.5 -3"
+        position="3.8 1.5 -3"
         width="2.5"
         height="1.5"
         onclick="show('Pinguino')"
