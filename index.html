@@ -137,13 +137,15 @@
 
       <a-sky src="#Delfin" id="principal"></a-sky>
 
+       <!-- Funcionalidades -->
       <script>
+        //Mostrar videos en el cielo 
         function show(id) {
           var valor = $("#" + id).attr("alt");
           document.getElementById("principal").setAttribute("src", "#" + id);
           $("#name").attr("value", "Este animal es " + valor);
         }
-
+        //Hover imagenes       
         function move(id) {
           var img = document.getElementById(id);
           img.setAttribute("scale", { x: 1.1, y: 1.1, z: 1.1 });
@@ -151,7 +153,7 @@
             img.setAttribute("scale", { x: 1, y: 1, z: 1 });
           });
         }
-
+        //Sonar descripcion animal
         function sound(id) {
           var img = document.querySelector("#" + id);
             img.addEventListener("stateremoved", function (evt) {
