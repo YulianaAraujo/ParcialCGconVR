@@ -13,19 +13,45 @@
     <a-scene>
       <a-assets>
         <!-- Imagenes -->
-        <img id="I1" alt="Leon" src="./assets/Ileon.jpeg" />
-        <img id="I2" alt="Elefante" src="./assets/Ielefante.jpg" />
-        <img id="I3" alt="Delfin" src="./assets/Idelfin.jpg" />
-        <img id="I4" alt="Pinguino" src="./assets/Ipinguino.jpg" />
+        <img id="I1" src="./assets/Ileon.jpeg" />
+        <img id="I2" src="./assets/Ielefante.jpg" />
+        <img id="I3" src="./assets/Idelfin.jpg" />
+        <img id="I4" src="./assets/Ipinguino.jpg" />
 
         <!-- Video -->
-        <video id="Leon" autoplay loop="true" src="./assets/Leon.mp4"></video>
-        <video id="Elefante" autoplay loop="true" src="./assets/Elefante.mp4"></video>
-        <video id="Delfin" autoplay loop="true" src="./assets/Delfin.mp4"></video>
-        <video id="Pinguino" autoplay loop="true" src="./assets/pinguinos.mp4"></video>
-      
+        <video
+          id="Leon"
+          alt="El Leon"
+          autoplay
+          loop="true"
+          src="./assets/Leon.mp4"
+        ></video>
+        <video
+          id="Elefante"
+          alt="El Elefante"
+          autoplay
+          loop="true"
+          src="./assets/Elefante.mp4"
+        ></video>
+        <video
+          id="Delfin"
+          alt="El Delfin"
+          autoplay
+          loop="true"
+          src="./assets/Delfin.mp4"
+        ></video>
+        <video
+          id="Pinguino"
+          alt="El Pinguino"
+          autoplay
+          loop="true"
+          src="./assets/pinguinos.mp4"
+        ></video>
+
         <!-- Audio -->
-        <audio id="Ielefante" src="./assets/infoelefante.mp3" preload="auto"></audio>
+        <audio id="A1" src="./assets/leoninfo.mp3"></audio>
+        <audio id="A2" src="./assets/infoelefante.mp3"></audio>
+        <audio id="A3" src="./assets/delfininfo.mp3"></audio>
       </a-assets>
 
       <!-- Propiedades -->
@@ -35,9 +61,9 @@
         position="-4.3 1.5 -3"
         width="2.5"
         height="1.5"
-        onclick="show('Leon')"
+        onclick="show('Leon'), sound(id)"
         onmouseenter="move(id)"
-        sound="src:#Ielefante; on:click"
+        sound="src: #A1; on: click; volumen:1;"
       ></a-image>
       <a-image
         id="img2"
@@ -45,8 +71,9 @@
         position="-1.6 1.5 -3"
         width="2.5"
         height="1.5"
-        onclick="show('Elefante')"
+        onclick="show('Elefante'), sound(id)"
         onmouseenter="move(id)"
+        sound="src: #A2; on: click; volumen:1;"
       ></a-image>
       <a-image
         id="img3"
@@ -54,8 +81,9 @@
         position="1.1 1.5 -3"
         width="2.5"
         height="1.5"
-        onclick="show('Delfin')"
+        onclick="show('Delfin'), sound(id) "
         onmouseenter="move(id)"
+        sound="src: #A3; on: click; volumen:1;"
       ></a-image>
       <a-image
         id="img4"
@@ -89,6 +117,17 @@
         opacity="1"
       ></a-text>
 
+      <!-- Descripción -->
+      <a-text
+        id="name"
+        align="center"
+        text="font: exo2bold"
+        scale="3 3 3.4"
+        color="#FFFF"
+        value=""
+        position="-0.05 0 -3"
+      ></a-text>
+
       <!-- Camara -->
       <a-camera>
         <a-cursor id="cursor"></a-cursor>
@@ -100,15 +139,34 @@
         function show(id) {
           var valor = $("#" + id).attr("alt");
           document.getElementById("principal").setAttribute("src", "#" + id);
-          $("#description").attr("value", "Usted se encuentra en" + valor);
-        
+          $("#name").attr("value", "Este animal es " + valor);
         }
 
-        function move(id){
-            var img = document.getElementById(id);
-            img.setAttribute("scale", { x: 1.1, y: 1.1, z: 1.1 });
-            img.addEventListener('mouseleave', function () {
-            img.setAttribute('scale', {x: 1, y: 1, z: 1});
+        function move(id) {
+          var img = document.getElementById(id);
+          img.setAttribute("scale", { x: 1.1, y: 1.1, z: 1.1 });
+          img.addEventListener("mouseleave", function () {
+            img.setAttribute("scale", { x: 1, y: 1, z: 1 });
+          });
+        }
+
+        function sound(id) {
+          var img = document.querySelector("#" + id);
+            img.addEventListener("stateremoved", function (evt) {
+              if (
+                evt.detail.state === "cursor-hovered" &&
+                img.components.sound.isPlaying
+              ) {
+                img.components.sound.pause();
+              }
+            });
+            img.addEventListener("stateadded", function (evt) {
+              if (
+                evt.detail.state === "cursor-hovered" &&
+                !img.components.sound.isPlaying
+              ) {
+                img.components.sound.play();
+              }
             });
         }
       </script>
