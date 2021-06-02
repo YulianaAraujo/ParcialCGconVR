@@ -52,6 +52,7 @@
         <audio id="A1" src="./assets/leoninfo.mp3"></audio>
         <audio id="A2" src="./assets/infoelefante.mp3"></audio>
         <audio id="A3" src="./assets/delfininfo.mp3"></audio>
+        <audio id="A4" src="./assets/pinguinoinfo.mp3"></audio>
       </a-assets>
 
       <!-- Propiedades -->
@@ -63,7 +64,7 @@
         height="1.5"
         onclick="show('Leon'), sound(id)"
         onmouseenter="move(id)"
-        sound="src: #A1; on: click; volumen:1;"
+        sound="src: #A1; on: click; volumen:70;"
       ></a-image>
       <a-image
         id="img2"
@@ -91,8 +92,9 @@
         position="3.8 1.5 -3"
         width="2.5"
         height="1.5"
-        onclick="show('Pinguino')"
+        onclick="show('Pinguino'), sound(id)"
         onmouseenter="move(id)"
+        sound="src: #A4; on: click; volumen:1;"
       ></a-image>
 
       <!-- Title -->
