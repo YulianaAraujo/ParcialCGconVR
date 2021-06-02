@@ -156,17 +156,17 @@
         //Sonar descripcion animal
         function sound(id) {
           var img = document.querySelector("#" + id);
-            img.addEventListener("stateremoved", function (evt) {
+            img.addEventListener("stateremoved", function (e) {
               if (
-                evt.detail.state === "cursor-hovered" &&
+                e.detail.state === "cursor-hovered" &&
                 img.components.sound.isPlaying
               ) {
                 img.components.sound.pause();
               }
             });
-            img.addEventListener("stateadded", function (evt) {
+            img.addEventListener("stateadded", function (e) {
               if (
-                evt.detail.state === "cursor-hovered" &&
+                e.detail.state === "cursor-hovered" &&
                 !img.components.sound.isPlaying
               ) {
                 img.components.sound.play();
